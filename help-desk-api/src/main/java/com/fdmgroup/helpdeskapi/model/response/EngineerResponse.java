@@ -11,11 +11,7 @@ public class EngineerResponse extends UserResponse {
     private String specialism;
 
     public EngineerResponse(Engineer engineer) {
-        this.email = engineer.getEmail();
-        this.fullName = engineer.getFullName();
-        this.id = engineer.getId();
-        this.password = engineer.getPassword();
-        this.username = engineer.getUsername();
+        super(engineer);
         this.specialism = engineer.getSpecialism();
         this.userType = "Engineer";
     }

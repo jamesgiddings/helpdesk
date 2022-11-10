@@ -9,11 +9,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class ClientResponse extends UserResponse {
     public ClientResponse(Client client) {
-        this.email = client.getEmail();
-        this.fullName = client.getFullName();
-        this.id = client.getId();
-        this.password = client.getPassword();
-        this.username = client.getUsername();
+        super(client);
         this.userType = "Client";
     }
 }

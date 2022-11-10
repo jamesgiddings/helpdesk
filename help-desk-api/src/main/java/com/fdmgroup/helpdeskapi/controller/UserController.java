@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fdmgroup.helpdeskapi.model.request.*;
+import com.fdmgroup.helpdeskapi.model.response.UserResponse;
 import com.fdmgroup.helpdeskapi.model.*;
 import com.fdmgroup.helpdeskapi.service.UserService;
 
@@ -40,7 +41,7 @@ public class UserController {
 	public ResponseEntity<?> saveAdmin(@RequestBody AdminRequest adminRequest) {
 		Admin admin = new Admin(adminRequest);
 		logger.info("Saving admin: {}", admin);
-		return new ResponseEntity<>(userService.saveUser(admin), HttpStatus.CREATED);
+		return new ResponseEntity<>(new UserResponse(userService.saveUser(admin)), HttpStatus.CREATED);
 	}
 
 	@Operation(summary = "Save an engineer")
@@ -50,7 +51,7 @@ public class UserController {
 
 		Engineer engineer = new Engineer(engineerRequest);
 		logger.info("Saving engineer: {}", engineer);
-		return new ResponseEntity<>(userService.saveUser(engineer), HttpStatus.CREATED);
+		return new ResponseEntity<>(new UserResponse(userService.saveUser(engineer)), HttpStatus.CREATED);
 	}
 
 	@Operation(summary = "Save a client")
@@ -59,7 +60,7 @@ public class UserController {
 	public ResponseEntity<?> saveClient(@RequestBody ClientRequest clientRequest) {
 		Client client = new Client(clientRequest);
 		logger.info("Saving client: {}", client);
-		return new ResponseEntity<>(userService.saveUser(client), HttpStatus.CREATED);
+		return new ResponseEntity<>(new UserResponse(userService.saveUser(client)), HttpStatus.CREATED);
 	}
 
 	@Operation(summary = "Find all users")
@@ -68,7 +69,8 @@ public class UserController {
 	public ResponseEntity<?> findAllUsers() {
 		logger.info("Finding all users");
 		List<User> users = userService.findAllUsers();
-		return new ResponseEntity<>(users, HttpStatus.OK);
+		List<UserResponse> userResponses = users.stream().map(UserResponse::new).toList();
+		return new ResponseEntity<>(userResponses, HttpStatus.OK);
 	}
 
 	@Operation(summary = "Find all engineers")
@@ -77,7 +79,8 @@ public class UserController {
 	public ResponseEntity<?> findAllEngineers() {
 		logger.info("Finding all engineers");
 		List<User> users = userService.findAllEngineers();
-		return new ResponseEntity<>(users, HttpStatus.OK);
+		List<UserResponse> userResponses = users.stream().map(UserResponse::new).toList();
+		return new ResponseEntity<>(userResponses, HttpStatus.OK);
 	}
 
 	@Operation(summary = "Find a user by id")
@@ -87,7 +90,7 @@ public class UserController {
 	public ResponseEntity<?> findUserById(@PathVariable long id) {
 		if (userService.findUserById(id) != null) {
 			logger.info("Finding user with id: {}", id);
-			return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
+			return new ResponseEntity<>(new UserResponse(userService.findUserById(id)), HttpStatus.OK);
 		} else {
 			logger.warn("User with id: {} not found", id);
 			return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
@@ -103,7 +106,7 @@ public class UserController {
 		if (returnedUser != null) {
 			if (returnedUser.getPassword().equals(password)) {
 				logger.info("Finding user with username: {}", username);
-				return new ResponseEntity<>(returnedUser, HttpStatus.OK);
+				return new ResponseEntity<>(new UserResponse(returnedUser), HttpStatus.OK);
 			} else {
 				logger.warn("Username and password: {} do not match", username);
 				return new ResponseEntity<>("Username and password do not match", HttpStatus.NOT_FOUND);
