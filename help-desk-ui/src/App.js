@@ -15,7 +15,7 @@ import AddAccounts from "./components/organisms/AddAccounts";
 import axios from "axios";
 import Home from "./components/pages/Home";
 import LoginFormMolecule from "./components/molecules/LoginFormMolecule";
-import { USER_TYPES } from "../../constant";
+import { USER_TYPES } from "./constant";
 
 const App = () => {
   const ls = require("local-storage");
