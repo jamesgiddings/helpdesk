@@ -17,6 +17,7 @@ import com.fdmgroup.helpdeskapi.model.Admin;
 import com.fdmgroup.helpdeskapi.model.Client;
 import com.fdmgroup.helpdeskapi.model.Engineer;
 import com.fdmgroup.helpdeskapi.model.User;
+import com.fdmgroup.helpdeskapi.model.request.AdminRequest;
 import com.fdmgroup.helpdeskapi.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,6 +30,7 @@ public class UserControlllerTest {
 	UserController userController;
 
 	Admin admin1, admin2;
+	AdminRequest adminRequest1, adminRequest2;
 	Client client1, client2;
 	Engineer engineer1, engineer2;
 
@@ -43,11 +45,23 @@ public class UserControlllerTest {
 		admin1.setUsername("GSmith");
 		admin1.setPassword("password");
 
+		adminRequest1 = new AdminRequest();
+		adminRequest1.setFullName("George Smith");
+		adminRequest1.setEmail("george@msn");
+		adminRequest1.setUsername("GSmith");
+		adminRequest1.setPassword("password");
+
 		admin2 = new Admin();
 		admin2.setFullName("Georgia Smith");
 		admin2.setEmail("georgia@msn");
 		admin2.setUsername("GaSmith");
 		admin2.setPassword("password");
+
+		adminRequest2 = new AdminRequest();
+		adminRequest2.setFullName("Georgia Smith");
+		adminRequest2.setEmail("georgia@msn");
+		adminRequest2.setUsername("GaSmith");
+		adminRequest2.setPassword("password");
 
 		client1 = new Client();
 		client1.setFullName("Joe Bloggs");
@@ -100,18 +114,19 @@ public class UserControlllerTest {
 
 	@Test
 	void testSaveUser() {
-		userController.saveAdmin(admin1);
+		userController.saveAdmin(adminRequest1);
 		verify(userService).saveUser(admin1);
 	}
 
 	@Test
 	void testUpdateTicket() {
-		userController.saveAdmin(admin1);
+		userController.saveAdmin(adminRequest1);
 
 		admin1.setFullName("G Smith");
+		adminRequest1.setFullName("G Smith");
 
-		userController.saveAdmin(admin1);
-		verify(userService, times(2)).saveUser(admin1);
+		userController.saveAdmin(adminRequest1);
+		verify(userService, times(1)).saveUser(admin1);
 
 	}
 }

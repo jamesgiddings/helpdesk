@@ -76,6 +76,7 @@ class AddAccount extends Component {
       console.log("new other Account", newAccount);
     }
     if (userType === "Admin") {
+      console.log("entered admin");
       axios
         .post("http://localhost:8081/gateway/users/admin", newAccount)
         .then((res) => {
@@ -182,7 +183,7 @@ class AddAccount extends Component {
                   value={email}
                   onChange={this.onHandleChange}
                   placeholder="Please type the email"
-                  errors={errors.username}
+                  errors={errors.email}
                 />
                 <FormInputMolecule
                   label="Create Password"
