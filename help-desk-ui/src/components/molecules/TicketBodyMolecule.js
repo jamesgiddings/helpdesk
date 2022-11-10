@@ -4,6 +4,7 @@ import LabelAtom from "../atoms/LabelAtom";
 import AddCommentMolecule from "./AddCommentMolecule";
 import MarkResolvedMolecule from "./MarkResolvedMolecule";
 import MessageMolecule from "./MessageMolecule";
+import { USER_TYPES } from "../../constant";
 const ls = require("local-storage");
 
 const TicketBodyMolecule = (props) => {
@@ -47,8 +48,8 @@ const TicketBodyMolecule = (props) => {
               <AddCommentMolecule user={user} ticketId={id} />
             </div>
             <div>
-              {loggedInUser.userType === "Client" ||
-              loggedInUser.userType === "Admin" ? (
+              {loggedInUser.userType === USER_TYPES.CLIENT ||
+              loggedInUser.userType === USER_TYPES.ADMIN ? (
                 <MarkResolvedMolecule ticketId={id} />
               ) : null}
             </div>

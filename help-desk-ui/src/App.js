@@ -15,6 +15,7 @@ import AddAccounts from "./components/organisms/AddAccounts";
 import axios from "axios";
 import Home from "./components/pages/Home";
 import LoginFormMolecule from "./components/molecules/LoginFormMolecule";
+import { USER_TYPES } from "../../constant";
 
 const App = () => {
   const ls = require("local-storage");
@@ -61,7 +62,7 @@ const App = () => {
             <Routes>
               <Route index element={<Home user={user} />} />
               <Route path="*" element={<PageNotFound />} />
-              {user.userType === "Admin" ? (
+              {user.userType === USER_TYPES.ADMIN ? (
                 <React.Fragment>
                   <Route path="/tickets" element={<Tickets />} />
                   <Route path="/admin" element={<Admin />} />
@@ -69,12 +70,12 @@ const App = () => {
                   <Route path="/admin/newaccounts" element={<AddAccounts />} />
                 </React.Fragment>
               ) : null}
-              {user.userType === "Engineer" ? (
+              {user.userType === USER_TYPES.ENGINEER ? (
                 <React.Fragment>
                   <Route path="/engineer" element={<Engineer />} />
                 </React.Fragment>
               ) : null}
-              {user.userType === "Client" ? (
+              {user.userType === USER_TYPES.CLIENT ? (
                 <React.Fragment>
                   <Route path="/client" element={<Client />} />
                   <Route path="/client/NewTicket" element={<AddTicket />} />
