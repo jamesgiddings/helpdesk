@@ -32,7 +32,7 @@ const TicketBodyMolecule = (props) => {
         {messages.map((message) => (
           <MessageMolecule
             key={message.id}
-            author={message.user.fullName}
+            author={message.user}
             body={message.body}
             message={message}
             id={message.id}
