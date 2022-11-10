@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fdmgroup.helpdeskapi.model.request.*;
-import com.fdmgroup.helpdeskapi.model.Admin;
-import com.fdmgroup.helpdeskapi.model.Client;
-import com.fdmgroup.helpdeskapi.model.Engineer;
-import com.fdmgroup.helpdeskapi.model.User;
+import com.fdmgroup.helpdeskapi.model.*;
 import com.fdmgroup.helpdeskapi.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;

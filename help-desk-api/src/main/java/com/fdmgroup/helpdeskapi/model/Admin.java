@@ -6,8 +6,10 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import com.fdmgroup.helpdeskapi.model.request.AdminRequest;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @PrimaryKeyJoinColumn(name = "user_id")
 public class Admin extends User {

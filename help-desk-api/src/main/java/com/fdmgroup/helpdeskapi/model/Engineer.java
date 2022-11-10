@@ -4,9 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import com.fdmgroup.helpdeskapi.model.request.EngineerRequest;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @PrimaryKeyJoinColumn(name = "user_id")
 public class Engineer extends User {
