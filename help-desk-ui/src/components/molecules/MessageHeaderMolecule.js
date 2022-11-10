@@ -1,5 +1,6 @@
 import React from "react";
 import IconAtom from "../atoms/IconAtom";
+import * as Constants from "../constant";
 
 const MessageHeaderMolecule = (props) => {
   const { author } = props;
@@ -8,7 +9,10 @@ const MessageHeaderMolecule = (props) => {
       <div>
         {author.fullName}&nbsp;
         {author.userType === "Engineer" ? (
-          <IconAtom icon="fa fa-wrench" />
+          <IconAtom icon={Constants.ENGINEER_ICON} />
+        ) : null}
+        {author.userType === "Admin" ? (
+          <IconAtom icon={Constants.ADMIN_ICON} />
         ) : null}
       </div>
     </React.Fragment>
