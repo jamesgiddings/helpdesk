@@ -11,5 +11,6 @@ public class ClientResponse extends UserResponse {
     public ClientResponse(Client client) {
         super(client);
         this.userType = "Client";
+        System.out.println("----ClientResponse constructor----");
     }
 }

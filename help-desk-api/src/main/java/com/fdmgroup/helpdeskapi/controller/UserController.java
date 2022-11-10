@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fdmgroup.helpdeskapi.model.request.*;
+import com.fdmgroup.helpdeskapi.model.response.AdminResponse;
 import com.fdmgroup.helpdeskapi.model.response.UserResponse;
 import com.fdmgroup.helpdeskapi.model.*;
 import com.fdmgroup.helpdeskapi.service.UserService;
