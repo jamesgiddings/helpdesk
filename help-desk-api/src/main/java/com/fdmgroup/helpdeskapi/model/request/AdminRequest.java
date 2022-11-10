@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-class AdminRequest extends UserRequest {
+public class AdminRequest extends UserRequest {
 
 }

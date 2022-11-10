@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fdmgroup.helpdeskapi.model.request.*;
 import com.fdmgroup.helpdeskapi.model.Admin;
 import com.fdmgroup.helpdeskapi.model.Client;
 import com.fdmgroup.helpdeskapi.model.Engineer;
@@ -39,7 +40,8 @@ public class UserController {
 	@Operation(summary = "Save an admin")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "User created"), })
 	@PostMapping("/admin")
-	public ResponseEntity<?> saveAdmin(@RequestBody Admin admin) {
+	public ResponseEntity<?> saveAdmin(@RequestBody AdminRequest adminRequest) {
+		Admin admin = new Admin(adminRequest);
 		logger.info("Saving admin: {}", admin);
 		return new ResponseEntity<>(userService.saveUser(admin), HttpStatus.CREATED);
 	}
@@ -47,7 +49,9 @@ public class UserController {
 	@Operation(summary = "Save an engineer")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "User created"), })
 	@PostMapping("/engineer")
-	public ResponseEntity<?> saveEngineer(@RequestBody Engineer engineer) {
+	public ResponseEntity<?> saveEngineer(@RequestBody EngineerRequest engineerRequest) {
+
+		Engineer engineer = new Engineer(engineerRequest);
 		logger.info("Saving engineer: {}", engineer);
 		return new ResponseEntity<>(userService.saveUser(engineer), HttpStatus.CREATED);
 	}
@@ -55,7 +59,8 @@ public class UserController {
 	@Operation(summary = "Save a client")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "User created"), })
 	@PostMapping("/client")
-	public ResponseEntity<?> saveClient(@RequestBody Client client) {
+	public ResponseEntity<?> saveClient(@RequestBody ClientRequest clientRequest) {
+		Client client = new Client(clientRequest);
 		logger.info("Saving client: {}", client);
 		return new ResponseEntity<>(userService.saveUser(client), HttpStatus.CREATED);
 	}

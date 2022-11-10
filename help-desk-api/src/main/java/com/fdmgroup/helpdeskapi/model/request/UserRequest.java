@@ -1,7 +1,9 @@
 package com.fdmgroup.helpdeskapi.model.request;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
 public abstract class UserRequest {
 
     private long id;
