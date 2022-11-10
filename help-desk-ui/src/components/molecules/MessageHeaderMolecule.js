@@ -1,6 +1,6 @@
 import React from "react";
 import IconAtom from "../atoms/IconAtom";
-import * as Constants from "../constant";
+import * as Constants from "../../constant";
 
 const MessageHeaderMolecule = (props) => {
   const { author } = props;
