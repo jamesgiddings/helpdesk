@@ -2,6 +2,7 @@ import axios from "axios";
 import FormInputMolecule from "../molecules/FormInputMolecule";
 import React, { Component } from "react";
 import FormSubmitAtom from "../atoms/FormSubmitAtom";
+import { USER_TYPES } from "../../constant";
 class AddAccount extends Component {
   state = {
     userType: "",
@@ -46,7 +47,7 @@ class AddAccount extends Component {
       return;
     }
 
-    if (userType === "Enigneer" && specialism === "") {
+    if (userType === USER_TYPES.ENGINEER && specialism === "") {
       this.setState({
         errors: { specialism: "Specialism is required for Engineers" },
       });
@@ -55,7 +56,7 @@ class AddAccount extends Component {
     console.log("passed validation");
 
     let newAccount = {};
-    if (userType === "Engineer") {
+    if (userType === USER_TYPES.ENGINEER) {
       newAccount = {
         username,
         email,
@@ -64,7 +65,6 @@ class AddAccount extends Component {
         userType,
         specialism,
       };
-      console.log("new engineer Account", newAccount);
     } else {
       newAccount = {
         userType,
@@ -73,10 +73,8 @@ class AddAccount extends Component {
         fullName,
         password,
       };
-      console.log("new other Account", newAccount);
     }
-    if (userType === "Admin") {
-      console.log("entered admin");
+    if (userType === USER_TYPES.ADMIN) {
       axios
         .post("http://localhost:8081/gateway/users/admin", newAccount)
         .then((res) => {
@@ -92,7 +90,7 @@ class AddAccount extends Component {
           });
           window.location.reload(true);
         });
-    } else if (userType === "Client") {
+    } else if (userType === USER_TYPES.CLIENT) {
       axios
         .post("http://localhost:8081/gateway/users/client", newAccount)
         .then((res) => {
@@ -108,10 +106,7 @@ class AddAccount extends Component {
           });
           window.location.reload(true);
         });
-    } else if (userType === "Engineer") {
-      console.log("entered engineer");
-      console.log(newAccount.specialism);
-      console.log(newAccount);
+    } else if (userType === USER_TYPES.ENGINEER) {
       axios
         .post("http://localhost:8081/gateway/users/engineer", newAccount)
         .then((res) => {
@@ -208,13 +203,15 @@ class AddAccount extends Component {
                     className="form-control"
                     onChange={this.onHandleChange}
                   >
-                    <option value="Admin">Admin</option>
-                    <option value="Client">Client</option>
-                    <option value="Engineer">Engineer</option>
+                    <option value={USER_TYPES.ADMIN}>USER_TYPES.ADMIN</option>
+                    <option value={USER_TYPES.CLIENT}>USER_TYPES.CLIENT</option>
+                    <option value={USER_TYPES.ENGINEER}>
+                      USER_TYPES.ENGINEER
+                    </option>
                   </select>
                 </div>
 
-                {userType === "Engineer" ? (
+                {userType === USER_TYPES.ENGINEER ? (
                   <FormInputMolecule
                     label="Specialism"
                     type="text"
