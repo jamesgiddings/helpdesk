@@ -1,5 +1,6 @@
 package com.fdmgroup.helpdeskapi.model.response;
 
+import com.fdmgroup.helpdeskapi.Constants;
 import com.fdmgroup.helpdeskapi.model.Admin;
 
 import lombok.Data;
@@ -11,7 +12,7 @@ public class AdminResponse extends UserResponse {
 
     public AdminResponse(Admin admin) {
         super(admin);
-        this.userType = "Admin";
+        this.userType = Constants.ADMIN_USER_TYPE;
     }
 
 }
