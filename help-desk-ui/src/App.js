@@ -15,7 +15,7 @@ import AddAccounts from "./components/organisms/AddAccounts";
 import axios from "axios";
 import Home from "./components/pages/Home";
 import LoginFormMolecule from "./components/molecules/LoginFormMolecule";
-import { USER_TYPES } from "./constant";
+import { USER_TYPES, DEFAULT_PAGE_TITLE } from "./constant";
 
 const App = () => {
   const ls = require("local-storage");
@@ -24,6 +24,7 @@ const App = () => {
   const [user, setUser] = useState();
 
   useEffect(() => {
+    document.title = DEFAULT_PAGE_TITLE;
     const loggedInUser = localStorage.getItem("user");
 
     if (loggedInUser) {
