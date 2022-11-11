@@ -1,5 +1,6 @@
 package com.fdmgroup.helpdeskapi.model.response;
 
+import com.fdmgroup.helpdeskapi.Constants;
 import com.fdmgroup.helpdeskapi.model.Client;
 
 import lombok.Data;
@@ -10,7 +11,6 @@ import lombok.EqualsAndHashCode;
 public class ClientResponse extends UserResponse {
     public ClientResponse(Client client) {
         super(client);
-        this.userType = "Client";
-        System.out.println("----ClientResponse constructor----");
+        this.userType = Constants.CLIENT_USER_TYPE;
     }
 }
