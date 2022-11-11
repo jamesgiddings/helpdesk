@@ -1,3 +1,5 @@
+export const DEFAULT_PAGE_TITLE = "Help Desk";
+
 export const ENGINEER_ICON = "fa fa-wrench";
 export const ADMIN_ICON = "fa fa-user-plus";
 
